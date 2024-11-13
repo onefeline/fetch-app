@@ -32,7 +32,7 @@ func TestCalculatePoints(t *testing.T) {
 	expectedPoints += 50                                         // Round dollar rule (9.00 is a round dollar)
 	expectedPoints += 25                                         // Multiple of quarter rule (9.00 is a multiple of 0.25)
 	expectedPoints += (len(receipt.Items) / 2) * 5               // Two items, so 5 points
-	expectedPoints += pointsForItemDescription(receipt.Items[0]) // Gatorade has a description length of 8, which is a multiple of 3
+	expectedPoints += pointsForItemDescription(receipt.Items[0]) // Gatorade has a description length of 8, which is not a multiple of 3
 	expectedPoints += pointsForItemDescription(receipt.Items[1]) // Another Gatorade item
 	expectedPoints += pointsForItemDescription(receipt.Items[2]) // Candy has a length of 5, which is not a multiple of 3
 	expectedPoints += 10                                         // Time between 2:00pm and 4:00pm
@@ -48,7 +48,7 @@ func TestCountAlphanumeric(t *testing.T) {
 		input    string
 		expected int
 	}{
-		{"M&M Corner Market", 14}, // "M&M Corner Market" has 15 alphanumeric characters
+		{"M&M Corner Market", 14}, // "M&M Corner Market" has 14 alphanumeric characters
 		{"123", 3},                // "123" has 3 alphanumeric characters
 		{"!@#$%^", 0},             // No alphanumeric characters
 		{"A B C", 3},              // "A B C" has 3 alphanumeric characters
